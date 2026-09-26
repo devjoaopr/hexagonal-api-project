@@ -1,0 +1,104 @@
+databaseChangeLog:
+  - changeSet:
+      author: devjoaopr
+      id: 0002-adding-other-main-tables
+
+      changes:
+        - createTable:
+            tableName: persons
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+
+
+        - createTable:
+            tableName: residents
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: cpf
+                  type: varchar(11)
+              - column:
+                  name: address
+                  type: varchar(255)
+              - column:
+                  name: phone
+                  type: varchar(40)
+              - column:
+                  name: person_id
+                  type: UUID
+
+        - createTable:
+            tableName: visits
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: datetime
+                  type: datetime
+              - column:
+                  name: resident_id
+                  type: uuid
+              - column:
+                  name: visitor_id
+                  type: uuid
+
+        - createTable:
+            tableName: visitors
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: rg
+                  type: varchar(11)
+              - column:
+                  name: person_id
+                  type: uuid
+
+        - addForeignKeyConstraint:
+            baseTableName: visitors
+            baseColumnNames: person_id
+            constraintName: fk_visitors_persons
+            referencedTableName: persons
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: visits
+            baseColumnNames: resident_id
+            constraintName: fk_visits_residents
+            referencedTableName: residents
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: visits
+            baseColumnNames: visitor_id
+            constraintName: fk_visits_visitors
+            referencedTableName: visitors
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: residents
+            baseColumnNames: person_id
+            constraintName: fk_residents_persons
+            referencedTableName: persons
+            referencedColumnNames: id
