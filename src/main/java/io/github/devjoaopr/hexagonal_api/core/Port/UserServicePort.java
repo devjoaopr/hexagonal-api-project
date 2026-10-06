@@ -1,4 +1,4 @@
-package io.github.devjoaopr.hexagonal_api.core.domain.Port;
+package io.github.devjoaopr.hexagonal_api.core.Port;
 
 import io.github.devjoaopr.hexagonal_api.core.domain.User;
 

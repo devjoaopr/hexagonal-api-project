@@ -1,6 +1,6 @@
-package io.github.devjoaopr.hexagonal_api.core.domain.usecase;
+package io.github.devjoaopr.hexagonal_api.core.usecase;
 
-import io.github.devjoaopr.hexagonal_api.core.domain.Port.UserServicePort;
+import io.github.devjoaopr.hexagonal_api.core.Port.UserServicePort;
 import io.github.devjoaopr.hexagonal_api.core.domain.User;
 
 public class UserService implements UserServicePort {
@@ -9,6 +9,5 @@ public class UserService implements UserServicePort {
     public User createUser(User user) {
         return null;
     }
-
 
 }
